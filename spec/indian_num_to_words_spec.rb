@@ -47,4 +47,36 @@ RSpec.describe IndianNumToWords do
       expect(1000000.to_indian_word).to eq("Ten Lakh")
     end
   end
+
+  # Float tests
+  describe "#to_indian_word - Float" do
+    it "converts decimal numbers" do
+      expect(5.5.to_indian_word).to eq("Five Point Five")
+      expect(123.456.to_indian_word).to eq("One Hundred and Twenty Three Point Four Five Six")
+    end
+
+    it "converts decimal numbers with zero whole part" do
+      expect(0.5.to_indian_word).to eq("Zero Point Five")
+    end
+
+    it "converts decimal numbers with zero decimal part" do
+      expect(5.0.to_indian_word).to eq("Five")
+    end
+
+    it "converts decimal numbers with zero whole and decimal part" do
+      expect(0.0.to_indian_word).to eq("Zero")
+    end
+
+    it "handles edge cases around boundaries" do
+      expect(999999.999.to_indian_word).to eq("Nine Lakh, Ninety Nine Thousand, Nine Hundred and Ninety Nine Point Nine Nine Nine")
+    end
+
+    it "handles negative numbers" do
+      expect(-5.5.to_indian_word).to eq("Minus Five Point Five")
+    end
+
+    it "handles negative zero" do
+      expect(-0.0.to_indian_word).to eq("Zero")
+    end
+  end
 end

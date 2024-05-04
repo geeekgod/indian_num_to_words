@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Rishabh Singh"]
   spec.email = ["ris8645208@gmail.com"]
 
-  spec.summary = "Spell out numbers in Indian format".freeze
-  spec.description = "Use the indian_num_to_words gem to convert numbers to words in Indian Format".freeze
+  spec.summary = "Spell out numbers in Indian format"
+  spec.description = "Use the indian_num_to_words gem to convert numbers to words in Indian Format"
   spec.homepage = "https://github.com/thisisrishabh22/indian_num_to_words"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"

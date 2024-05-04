@@ -27,13 +27,13 @@ RSpec.describe IndianNumToWords do
     end
 
     it "converts lakhs correctly" do
-      expect(100000.to_indian_word).to eq("One Lakh")
-      expect(123456.to_indian_word).to eq("One Lakh, Twenty Three Thousand, Four Hundred and Fifty Six")
+      expect(100_000.to_indian_word).to eq("One Lakh")
+      expect(123_456.to_indian_word).to eq("One Lakh, Twenty Three Thousand, Four Hundred and Fifty Six")
     end
 
     it "converts crores correctly" do
-      expect(10000000.to_indian_word).to eq("One Crore")
-      expect(251000000.to_indian_word).to eq("Twenty Five Crore, Ten Lakh")
+      expect(10_000_000.to_indian_word).to eq("One Crore")
+      expect(251_000_000.to_indian_word).to eq("Twenty Five Crore, Ten Lakh")
     end
 
     it "handles zero" do
@@ -43,8 +43,8 @@ RSpec.describe IndianNumToWords do
     it "handles edge cases around boundaries" do
       expect(999.to_indian_word).to eq("Nine Hundred and Ninety Nine")
       expect(1000.to_indian_word).to eq("One Thousand")
-      expect(999999.to_indian_word).to eq("Nine Lakh, Ninety Nine Thousand, Nine Hundred and Ninety Nine")
-      expect(1000000.to_indian_word).to eq("Ten Lakh")
+      expect(999_999.to_indian_word).to eq("Nine Lakh, Ninety Nine Thousand, Nine Hundred and Ninety Nine")
+      expect(1_000_000.to_indian_word).to eq("Ten Lakh")
     end
   end
 
@@ -68,7 +68,7 @@ RSpec.describe IndianNumToWords do
     end
 
     it "handles edge cases around boundaries" do
-      expect(999999.999.to_indian_word).to eq("Nine Lakh, Ninety Nine Thousand, Nine Hundred and Ninety Nine Point Nine Nine Nine")
+      expect(999_999.999.to_indian_word).to eq("Nine Lakh, Ninety Nine Thousand, Nine Hundred and Ninety Nine Point Nine Nine Nine")
     end
 
     it "handles negative numbers" do

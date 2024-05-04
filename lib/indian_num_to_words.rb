@@ -9,34 +9,35 @@ NUMBER_WORDS = {
   15 => "Fifteen", 16 => "Sixteen", 17 => "Seventeen", 18 => "Eighteen",
   19 => "Nineteen", 20 => "Twenty", 30 => "Thirty", 40 => "Forty",
   50 => "Fifty", 60 => "Sixty", 70 => "Seventy", 80 => "Eighty", 90 => "Ninety"
-}
+}.freeze
 
+# This module provides methods to convert numbers to words using the Indian numbering system.
+# It can be included in the Integer and Float classes.
 module IndianNumToWords
   class Error < StandardError; end
 
   def to_indian_word
-    
-    return "Minus " + (-self).to_indian_word if self < 0
-    
+    return "Minus #{(-self).to_indian_word}" if negative?
+
     return integer_to_words(self) if is_a?(Integer)
 
-    return float_to_words(self) if is_a?(Float)
+    float_to_words(self) if is_a?(Float)
   end
 
   private
 
   def float_to_words(number)
-    whole, decimal = number.to_s.split('.')
+    whole, decimal = number.to_s.split(".")
     words = integer_to_words(whole.to_i)
     unless decimal.to_i.zero?
       decimal_words = decimal.chars.map { |d| NUMBER_WORDS[d.to_i] }.join(" ")
-      words += " Point " + decimal_words
+      words += " Point #{decimal_words}"
     end
     words
   end
 
   def integer_to_words(number)
-    return NUMBER_WORDS[number] if number < 20 || (number % 10 == 0 && number < 100)
+    return NUMBER_WORDS[number] if number < 20 || ((number % 10).zero? && number < 100)
 
     case number
     when 0
@@ -46,28 +47,27 @@ module IndianNumToWords
       [NUMBER_WORDS[tens * 10], NUMBER_WORDS[ones]].compact.join(" ")
     when 100..999
       hundreds, remainder = number.divmod(100)
-      parts = [NUMBER_WORDS[hundreds] + " Hundred"]
+      parts = ["#{NUMBER_WORDS[hundreds]} Hundred"]
       parts << integer_to_words(remainder) unless remainder.zero?
       parts.join(" and ")
-    when 1000..99999
+    when 1000..99_999
       thousands, remainder = number.divmod(1000)
-      parts = [integer_to_words(thousands) + " Thousand"]
+      parts = ["#{integer_to_words(thousands)} Thousand"]
       parts << integer_to_words(remainder) unless remainder.zero?
       parts.join(", ")
-    when 100000..9999999
-      lakhs, remainder = number.divmod(100000)
-      parts = [integer_to_words(lakhs) + " Lakh"]
+    when 100_000..9_999_999
+      lakhs, remainder = number.divmod(100_000)
+      parts = ["#{integer_to_words(lakhs)} Lakh"]
       parts << integer_to_words(remainder) unless remainder.zero?
       parts.join(", ")
     else
-      crores, remainder = number.divmod(10000000)
-      parts = [integer_to_words(crores) + " Crore"]
+      crores, remainder = number.divmod(10_000_000)
+      parts = ["#{integer_to_words(crores)} Crore"]
       parts << integer_to_words(remainder) unless remainder.zero?
       parts.join(", ")
     end
   end
 end
-
 
 Integer.include IndianNumToWords
 Float.include IndianNumToWords

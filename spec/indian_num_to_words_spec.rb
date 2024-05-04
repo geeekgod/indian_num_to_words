@@ -68,7 +68,8 @@ RSpec.describe IndianNumToWords do
     end
 
     it "handles edge cases around boundaries" do
-      expect(999_999.999.to_indian_word).to eq("Nine Lakh, Ninety Nine Thousand, Nine Hundred and Ninety Nine Point Nine Nine Nine")
+      expected_description = "Nine Lakh, Ninety Nine Thousand, Nine Hundred and Ninety Nine Point Nine Nine Nine"
+      expect(999_999.999.to_indian_word).to eq(expected_description)
     end
 
     it "handles negative numbers" do

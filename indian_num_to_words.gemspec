@@ -10,13 +10,14 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Spell out numbers in Indian format"
   spec.description = "Use the indian_num_to_words gem to convert numbers to words in Indian Format"
-  spec.homepage = "https://github.com/thisisrishabh22/indian_num_to_words"
+  spec.homepage = "https://github.com/geeekgod/indian_num_to_words"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/thisisrishabh22/indian_num_to_words"
-  spec.metadata["changelog_uri"] = "https://github.com/thisisrishabh22/indian_num_to_words/blob/main/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/geeekgod/indian_num_to_words"
+  spec.metadata["changelog_uri"] = "https://github.com/geeekgod/indian_num_to_words/blob/main/CHANGELOG.md"
+  spec.metadata["github_repo"] = "ssh://github.com/geeekgod/indian_num_to_words"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
